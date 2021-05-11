@@ -1,7 +1,5 @@
 package tqs.ua.AirQuality.model;
 
-import java.util.Date;
-
 public class AirQuality {
     
     private double NO2;
@@ -11,10 +9,12 @@ public class AirQuality {
     private double SO2;
     private double OZONE;
     private int AQI;
-    //private Date updatedAt;
     private String pollutant;
     private double concentration;
     private String category;
+    private String city;
+    private String countryCode;
+    private String postalCode;
 
     public double getNO2() {
         return NO2;
@@ -58,14 +58,6 @@ public class AirQuality {
     public void setAQI(int aQI) {
         AQI = aQI;
     }
-    /*
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-    */
     public String getPollutant() {
         return pollutant;
     }
@@ -84,6 +76,23 @@ public class AirQuality {
     public void setCategory(String category) {
         this.category = category;
     }
-
+    public String getCity() {
+        return city;
+    }
+    public void setCity(String city) {
+        this.city = city;
+    }
+    public String getCountryCode() {
+        return countryCode;
+    }
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
+    public String getPostalCode() {
+        return postalCode;
+    }
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
     
 }

@@ -11,6 +11,9 @@
         <li class="nav-item active">
           <a class="nav-link" href="/byday">By Day <span class="sr-only">(current)</span></a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/cache">Cache Statistics</a>
+        </li>
       </ul>
     </div>
   </nav>
@@ -46,7 +49,7 @@
     <hr>
 
     <p *ngIf="loading">Loading...</p>
-    <p *ngIf="error">Air Quality results not found for the given parameters.</p>
+    <p *ngIf="error" id="error">Air Quality results not found for the given parameters.</p>
 
     <div *ngIf="result_ok">
       <p>Showing results for Latitude <strong> {{ filterForm.value.lat }}</strong>, Longitude <strong> {{ filterForm.value.lon }}</strong>, Date <strong> {{ filterForm.value.day }}</strong>.</p>

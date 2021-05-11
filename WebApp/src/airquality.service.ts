@@ -19,13 +19,16 @@ export class AirQualityService {
 
   getAirQuality(city: any): Observable<any> {
     let url = this.URL + '?city=' + city;
-
     return this.http.get(url, httpOptions);
   }
 
   getAirQualityByDay(lat: any, lon: any, from: any) {
     let url = this.URL + 'coords?lat=' + lat + '&lng=' + lon + '&from=' + from;
-    console.log("Aquiiiiii");
+    return this.http.get(url, httpOptions);
+  }
+
+  getCache() {
+    let url = this.URL + 'cache';
     return this.http.get(url, httpOptions);
   }
 }

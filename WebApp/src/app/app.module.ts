@@ -10,13 +10,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { BycityComponent } from './bycity/bycity.component';
 import { BydayComponent } from './byday/byday.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { CacheComponent } from './cache/cache.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BycityComponent,
     BydayComponent,
-    HomepageComponent
+    HomepageComponent,
+    CacheComponent
   ],
   imports: [
     BrowserModule,

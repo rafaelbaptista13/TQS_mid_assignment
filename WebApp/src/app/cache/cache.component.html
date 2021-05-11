@@ -11,22 +11,18 @@
         <li class="nav-item">
           <a class="nav-link" href="/byday">By Day</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/cache">Cache Statistics</a>
+        <li class="nav-item active">
+            <a class="nav-link" href="/cache">Cache Statistics <span class="sr-only">(current)</span></a>
         </li>
       </ul>
     </div>
   </nav>
 <div style="margin-left: 400px; margin-right: 400px;">
     <br>
-    <h2>Air Quality App</h2>
+    <h3>Api Cache Statistics</h3>
     <br>
-    <p>Check the features below:</p>
-    <a href="/bycity" class="btn btn-primary">
-        Search Air Quality by City
-    </a>
-    <span>&nbsp;&nbsp;&nbsp;</span>
-    <a href="/byday" class="btn btn-primary">
-        Search Air Quality on a specific day
-    </a>
-  </div>
+    <hr>
+    <p id="requests"><strong>Number of Requests:</strong> {{ values["numberOfRequests"] }} </p>
+    <p id="hits"><strong>Number of Hits:</strong> {{ values["numberOfHits"] }} </p>
+    <p id="misses"><strong>Number of Misses:</strong> {{ values["numberOfMisses"] }} </p>
+</div>
