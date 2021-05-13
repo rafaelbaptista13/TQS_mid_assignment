@@ -15,13 +15,13 @@ import static org.hamcrest.CoreMatchers.is;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = AirQualityApplication.class)
 @AutoConfigureMockMvc
-public class AirQualityControllerIntegrationTest {
+class AirQualityControllerIntegrationTest {
     
     @Autowired
     private MockMvc mvc;
 
     @Test
-    public void whenGetAirQualityByCity_thenReturnResult() throws Exception {
+    void whenGetAirQualityByCity_thenReturnResult() throws Exception {
         AirQuality response = new AirQuality();
         response.setCity("Aveiro");
         response.setPostalCode("3800-002");
@@ -36,7 +36,7 @@ public class AirQualityControllerIntegrationTest {
     }
 
     @Test
-    public void whenGetAirQualityByCoordsAndDay_thenReturnResult() throws Exception {
+    void whenGetAirQualityByCoordsAndDay_thenReturnResult() throws Exception {
         AirQuality response = new AirQuality();
         response.setAQI(73);
         response.setNO2(0.69);
@@ -56,7 +56,7 @@ public class AirQualityControllerIntegrationTest {
     }
 
     @Test
-    public void whenGetAirQualityWithInvalidCityName_thenIsBadRequest() throws Exception {
+    void whenGetAirQualityWithInvalidCityName_thenIsBadRequest() throws Exception {
         mvc.perform(get("/api/airquality?city=-InvalidCityName-")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
@@ -64,14 +64,14 @@ public class AirQualityControllerIntegrationTest {
     }
 
     @Test
-    public void whenGetAirQualityWithInvalidLatitudeAndInvalidLongitude_thenIsBadRequest() throws Exception {
+    void whenGetAirQualityWithInvalidLatitudeAndInvalidLongitude_thenIsBadRequest() throws Exception {
         mvc.perform(get("/api/airquality/coords?lat=Norte&lng=Norte&from=2021-05-10")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
-    public void whenGetAirQualityWithInvalidDate_thenIsBadRequest() throws Exception {
+    void whenGetAirQualityWithInvalidDate_thenIsBadRequest() throws Exception {
         mvc.perform(get("/api/airquality/coords?lat=40&lng=8&from=2070-05-10")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
@@ -79,7 +79,7 @@ public class AirQualityControllerIntegrationTest {
     }
 
     @Test
-    public void whenGetAirQualityByCityNameWithEmptyValues_thenIsBadRequest() throws Exception {
+    void whenGetAirQualityByCityNameWithEmptyValues_thenIsBadRequest() throws Exception {
         mvc.perform(get("/api/airquality")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
@@ -87,14 +87,14 @@ public class AirQualityControllerIntegrationTest {
     }
 
     @Test
-    public void whenGetAirQualityByCoordsAndDayWithEmptyValues_thenIsBadRequest() throws Exception {
+    void whenGetAirQualityByCoordsAndDayWithEmptyValues_thenIsBadRequest() throws Exception {
         mvc.perform(get("/api/airquality/coords")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
-    public void whenGetCacheStatistics_thenReturnStatistics() throws Exception {
+    void whenGetCacheStatistics_thenReturnStatistics() throws Exception {
         mvc.perform(get("/api/airquality/cache")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

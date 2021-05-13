@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import tqs.ua.AirQuality.model.AirQuality;
 import tqs.ua.AirQuality.service.AirQualityService;
 import tqs.ua.AirQuality.service.Cache;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/api")
@@ -18,12 +18,12 @@ public class AirQualityController {
     @Autowired
     private AirQualityService airQualityService;
 
-    private static final Logger logger = Logger.getLogger(AirQualityController.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(AirQualityController.class);
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path="/airquality")
     public AirQuality getAirQualityByCity(@RequestParam(value = "city") String city) throws IOException, InterruptedException {
-        logger.log(Level.INFO, "LOGGER: GET /airquality?city="+city);
+        logger.info("LOGGER: GET /airquality?city={}", city);
         return airQualityService.getLatestByCity(city);
     }
 
@@ -32,15 +32,14 @@ public class AirQualityController {
     public AirQuality getAirQualityByLatLonDay(@RequestParam(value = "lat") String lat,
                                           @RequestParam(value = "lng") String lng, 
                                           @RequestParam(value = "from") String from) throws IOException, InterruptedException {
-        logger.log(Level.INFO, "LOGGER: GET /airquality/coords?lat="+lat+"&lng="+lng+"&from="+from);
+        logger.info("LOGGER: GET /airquality/coords?lat={}&lng={}&from={}", lat, lng, from);
         return airQualityService.getByCoordsAndDay(lat, lng, from);
-        
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path="/airquality/cache")
-    public Cache getCacheStatistics() throws IOException, InterruptedException {
-        logger.log(Level.INFO, "LOGGER: GET /airquality/cache");
+    public Cache getCacheStatistics() {
+        logger.info("LOGGER: GET /airquality/cache");
         return airQualityService.getCacheStatistics();
     }
 }

@@ -2,13 +2,13 @@ package tqs.ua.AirQuality.model;
 
 public class AirQuality {
     
-    private double NO2;
-    private double PM10;
-    private double PM25;
-    private double CO;
-    private double SO2;
-    private double OZONE;
-    private int AQI;
+    private double no2;
+    private double pm10;
+    private double pm25;
+    private double co;
+    private double so2;
+    private double ozone;
+    private int aqi;
     private String pollutant;
     private double concentration;
     private String category;
@@ -17,46 +17,46 @@ public class AirQuality {
     private String postalCode;
 
     public double getNO2() {
-        return NO2;
+        return no2;
     }
-    public void setNO2(double nO2) {
-        NO2 = nO2;
+    public void setNO2(double no2) {
+        this.no2 = no2;
     }
     public double getPM10() {
-        return PM10;
+        return pm10;
     }
-    public void setPM10(double pM10) {
-        PM10 = pM10;
+    public void setPM10(double pm10) {
+        this.pm10 = pm10;
     }
     public double getPM25() {
-        return PM25;
+        return pm25;
     }
-    public void setPM25(double pM25) {
-        PM25 = pM25;
+    public void setPM25(double pm25) {
+        this.pm25 = pm25;
     }
     public double getCO() {
-        return CO;
+        return co;
     }
-    public void setCO(double cO) {
-        CO = cO;
+    public void setCO(double co) {
+        this.co = co;
     }
     public double getSO2() {
-        return SO2;
+        return so2;
     }
-    public void setSO2(double sO2) {
-        SO2 = sO2;
+    public void setSO2(double so2) {
+        this.so2 = so2;
     }
     public double getOZONE() {
-        return OZONE;
+        return ozone;
     }
-    public void setOZONE(double oZONE) {
-        OZONE = oZONE;
+    public void setOZONE(double ozone) {
+        this.ozone = ozone;
     }
     public int getAQI() {
-        return AQI;
+        return aqi;
     }
-    public void setAQI(int aQI) {
-        AQI = aQI;
+    public void setAQI(int aqi) {
+        this.aqi = aqi;
     }
     public String getPollutant() {
         return pollutant;

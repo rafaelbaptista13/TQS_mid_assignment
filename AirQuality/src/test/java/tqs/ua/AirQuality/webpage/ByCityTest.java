@@ -25,7 +25,7 @@ import org.openqa.selenium.Keys;
 import java.util.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-public class ByCityTest {
+class ByCityTest {
   private WebDriver driver;
   private Map<String, Object> vars;
   JavascriptExecutor js;

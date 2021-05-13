@@ -10,15 +10,15 @@ import org.springframework.web.server.ResponseStatusException;
 import tqs.ua.AirQuality.model.AirQuality;
 import tqs.ua.AirQuality.repository.AmbeeRepository;
 import tqs.ua.AirQuality.repository.BreezometerRepository;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class AirQualityService {
     
     private final Cache cache = new Cache(5 * 60L);
 
-    private static final Logger logger = Logger.getLogger(AirQualityService.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(AirQualityService.class);
 
     @Autowired
     private AmbeeRepository externalApi;
@@ -27,24 +27,22 @@ public class AirQualityService {
     private BreezometerRepository externalApi2;
 
     public AirQuality getLatestByCity(String city) throws IOException, InterruptedException {
-        logger.log(Level.INFO, "LOGGER: AirQualityService getLatestByCity "+city);
+        logger.info("LOGGER: AirQualityService getLatestByCity {}", city);
         AirQuality result = cache.getRequest(city);
         if (result == null) {
             result = this.externalApi.getLatestByCity(city);
-            System.out.println("Fui à API.");
             if (result == null) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                         "Request not valid.  Please check api token and city");
             }
         }
         
-        if (result != null) 
-            cache.saveRequest(city, result);
+        cache.saveRequest(city, result);
         return result;
     };
 
     public AirQuality getByCoordsAndDay(String lat, String lng, String from) throws IOException, InterruptedException {
-        logger.log(Level.INFO, "LOGGER: AirQualityService getByCoordsAndDay lat="+lat+" lng="+lng+" from="+from);
+        logger.info("LOGGER: AirQualityService getByCoordsAndDay lat={} lng={} from={}", lat, lng, from);
         AirQuality result = cache.getRequest(lat, lng, from);
         if (result == null) {
             result = this.externalApi.getByCoordsAndDays(lat, lng, from);
@@ -56,13 +54,12 @@ public class AirQualityService {
                 }
             }
         }
-        if (result != null)
-            cache.saveRequest(lat, lng, from, result);
+        cache.saveRequest(lat, lng, from, result);
         return result;
     };
 
-    public Cache getCacheStatistics() throws IOException, InterruptedException {
-        logger.log(Level.INFO, "LOGGER: AirQualityService getCacheStatistics");
+    public Cache getCacheStatistics() {
+        logger.info("LOGGER: AirQualityService getCacheStatistics");
         return cache;
     };
 

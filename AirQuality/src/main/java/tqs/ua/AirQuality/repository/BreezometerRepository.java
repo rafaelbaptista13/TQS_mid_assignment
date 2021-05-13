@@ -9,25 +9,25 @@ import org.json.JSONObject;
 import org.json.JSONException;
 import org.springframework.stereotype.Repository;
 import tqs.ua.AirQuality.model.AirQuality;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Repository
 public class BreezometerRepository {
     private static final String BASE_URL = "https://api.breezometer.com/air-quality/v2/";
     private static final String API_TOKEN = "0b5c0133f4fd40308ae8ff51e4f5f49e";
 
-    private static final Logger logger = Logger.getLogger(BreezometerRepository.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(BreezometerRepository.class);
 
     public AirQuality getByCoordsAndDays(String lat, String lng, String from) throws IOException, InterruptedException {
-        logger.log(Level.INFO, "LOGGER: BreezometerRepository getByCoordsAndDay lat="+lat+" lng="+lng+" from="+from);
+        logger.info("LOGGER: BreezometerRepository getByCoordsAndDay lat={} lng={} from={}", lat, lng, from);
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(BASE_URL + "historical/hourly?lat=" + lat + "&lon=" + lng + "&datetime=" + from + "&key=" + API_TOKEN + "&features=breezometer_aqi,local_aqi,pollutants_concentrations,pollutants_aqi_information"))
                 .header("Content-type", "application/json")
                 .method("GET", HttpRequest.BodyPublishers.noBody())
                 .build();
         HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-        logger.log(Level.INFO, "LOGGER: BreezometerRepository getByCoordsAndDay lat="+lat+" lng="+lng+" from="+from+". Response: "+response);
+        logger.info("LOGGER: BreezometerRepository getByCoordsAndDay lat={} lng={} from={}. Response: {}", lat, lng, from, response);
         if (response.statusCode() == 200) {
             try {
                 JSONObject response_json = new JSONObject(response.body());
@@ -47,11 +47,11 @@ public class BreezometerRepository {
                 return result;
             } catch (JSONException e) {
                 e.printStackTrace();
-                logger.log(Level.INFO, "LOGGER: BreezometerRepository getByCoordsAndDay lat="+lat+" lng="+lng+" from="+from+". Error: "+e);
+                logger.info("LOGGER: BreezometerRepository getByCoordsAndDay lat={} lng={} from={}. Error: {}", lat, lng, from, e);
                 return null;
             } 
         }
-        logger.log(Level.INFO, "LOGGER: BreezometerRepository getByCoordsAndDay lat="+lat+" lng="+lng+" from="+from+". Response Status Code != 200");
+        logger.info("LOGGER: BreezometerRepository getByCoordsAndDay lat={} lng={} from={}. Response Status Code != 200", lat, lng, from);
         return null;
     }
 

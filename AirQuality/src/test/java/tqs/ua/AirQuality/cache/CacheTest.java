@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import tqs.ua.AirQuality.model.AirQuality;
 import tqs.ua.AirQuality.service.Cache;
 
-public class CacheTest {
+class CacheTest {
     
     private Cache cache;
 
@@ -15,32 +15,32 @@ public class CacheTest {
     private void init() {
         cache = new Cache(2);
 
-        assertThat(cache.getNumberOfRequests()).isEqualTo(0);
-        assertThat(cache.getNumberOfHits()).isEqualTo(0);
-        assertThat(cache.getNumberOfMisses()).isEqualTo(0);
+        assertThat(cache.getNumberOfRequests()).isZero();
+        assertThat(cache.getNumberOfHits()).isZero();
+        assertThat(cache.getNumberOfMisses()).isZero();
     }
 
     @Test
-    public void whenRequestDoesNotExist_thenIncrementMisses() {
+    void whenRequestDoesNotExist_thenIncrementMisses() {
         assertThat(cache.getRequest("invalidrequest")).isNull();
         assertThat(cache.getNumberOfRequests()).isEqualTo(1);
-        assertThat(cache.getNumberOfHits()).isEqualTo(0);
+        assertThat(cache.getNumberOfHits()).isZero();
         assertThat(cache.getNumberOfMisses()).isEqualTo(1);
     }
 
     @Test
-    public void whenRequestExists_thenReturnsRequestAndIncrementsHits() {
+    void whenRequestExists_thenReturnsRequestAndIncrementsHits() {
         AirQuality response = getResponse();
         cache.saveRequest("Aveiro", response);
         assertThat(cache.getRequest("Aveiro")).isEqualTo(response);
 
         assertThat(cache.getNumberOfRequests()).isEqualTo(1);
         assertThat(cache.getNumberOfHits()).isEqualTo(1);
-        assertThat(cache.getNumberOfMisses()).isEqualTo(0);
+        assertThat(cache.getNumberOfMisses()).isZero();
     }
 
     @Test
-    public void whenRequestExpired_thenReturnsNullAndIncrementsMisses() throws InterruptedException {
+    void whenRequestExpired_thenReturnsNullAndIncrementsMisses() throws InterruptedException {
         AirQuality response = getResponse();
         cache.saveRequest("Aveiro", response);
 
@@ -49,7 +49,7 @@ public class CacheTest {
         assertThat(cache.getRequest("Aveiro")).isNull();
         
         assertThat(cache.getNumberOfRequests()).isEqualTo(1);
-        assertThat(cache.getNumberOfHits()).isEqualTo(0);
+        assertThat(cache.getNumberOfHits()).isZero();
         assertThat(cache.getNumberOfMisses()).isEqualTo(1);
     }
 

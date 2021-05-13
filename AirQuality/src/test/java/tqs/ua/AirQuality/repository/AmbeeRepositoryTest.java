@@ -12,28 +12,28 @@ import java.io.IOException;
 import tqs.ua.AirQuality.model.AirQuality;
 
 @ExtendWith(MockitoExtension.class)
-public class AmbeeRepositoryTest {
+class AmbeeRepositoryTest {
 
     @InjectMocks
     private AmbeeRepository repository;
 
     @Test
-    public void whenGetAirQuality_thenReturnCorrectResults() throws IOException, InterruptedException {
+    void whenGetAirQuality_thenReturnCorrectResults() throws IOException, InterruptedException {
         assertThat(repository.getLatestByCity("Aveiro")).isInstanceOf(AirQuality.class);
     }
 
     @Test
-    public void whenGetAirQualityInvalidCityName_thenReturnNull() throws IOException, InterruptedException {
+    void whenGetAirQualityInvalidCityName_thenReturnNull() throws IOException, InterruptedException {
         assertThat(repository.getLatestByCity("-invalidcityname-")).isNull();
     }
 
     @Test
-    public void whenGetAirQualityByCoordsAndDay_thenReturnCorrectResults() throws IOException, InterruptedException {
+    void whenGetAirQualityByCoordsAndDay_thenReturnCorrectResults() throws IOException, InterruptedException {
         assertThat(repository.getByCoordsAndDays("12", "73", "2021-05-10")).isInstanceOf(AirQuality.class);
     }
 
     @Test
-    public void whenGetAirQualityByCoordsAndDayInvalid_thenReturnCorrectResults() throws IOException, InterruptedException {
+    void whenGetAirQualityByCoordsAndDayInvalid_thenReturnCorrectResults() throws IOException, InterruptedException {
         assertThat(repository.getByCoordsAndDays("12", "73", "2070-05-10")).isNull();
     }
 }

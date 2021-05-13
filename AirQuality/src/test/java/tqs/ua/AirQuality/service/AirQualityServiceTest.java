@@ -14,7 +14,7 @@ import tqs.ua.AirQuality.repository.AmbeeRepository;
 import tqs.ua.AirQuality.repository.BreezometerRepository;
 
 @ExtendWith(MockitoExtension.class)
-public class AirQualityServiceTest {
+class AirQualityServiceTest {
 
     @Mock
     private AmbeeRepository repository1;
@@ -26,7 +26,7 @@ public class AirQualityServiceTest {
     private AirQualityService service;
 
     @Test
-    public void whenGetAirQuality_thenReturnCorrectResults() throws Exception {
+    void whenGetAirQuality_thenReturnCorrectResults() throws Exception {
         AirQuality response = getResponse();
         when(repository1.getLatestByCity("Aveiro")).thenReturn(response);
         assertThat(service.getLatestByCity("Aveiro")).isEqualTo(response);
@@ -34,7 +34,7 @@ public class AirQualityServiceTest {
     }
 
     @Test
-    public void whenGetAirQualityByDayAmbee_thenReturnCorrectResults() throws Exception {
+    void whenGetAirQualityByDayAmbee_thenReturnCorrectResults() throws Exception {
         AirQuality response = getResponse();
         when(repository1.getByCoordsAndDays("12", "73", "2021-05-01")).thenReturn(response);
         assertThat(service.getByCoordsAndDay("12", "73", "2021-05-01")).isEqualTo(response);
@@ -42,7 +42,7 @@ public class AirQualityServiceTest {
     }
 
     @Test
-    public void whenGetAirQualityByDayBreezometer_thenReturnCorrectResults() throws Exception {
+    void whenGetAirQualityByDayBreezometer_thenReturnCorrectResults() throws Exception {
         AirQuality response = getResponse();
         when(repository1.getByCoordsAndDays("12", "73", "2021-05-01")).thenReturn(null);
         when(repository2.getByCoordsAndDays("12", "73", "2021-05-01")).thenReturn(response);

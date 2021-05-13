@@ -19,7 +19,7 @@ import tqs.ua.AirQuality.model.AirQuality;
 import tqs.ua.AirQuality.service.AirQualityService;
 
 @WebMvcTest(AirQualityController.class)
-public class AirQualityControllerTest {
+class AirQualityControllerTest {
     
     @Autowired
     private MockMvc mvc;
