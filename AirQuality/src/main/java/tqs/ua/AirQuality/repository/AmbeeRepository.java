@@ -53,7 +53,6 @@ public class AmbeeRepository {
                 
                 return result;
             } catch (JSONException e) {
-                e.printStackTrace();
                 logger.info("LOGGER: AmbeeRepository getLatestByCity {}. Error: {}", city, e);
                 return null;
             } 
@@ -88,7 +87,6 @@ public class AmbeeRepository {
                 result.setAQI(Integer.parseInt(response_json.getString("AQI")));
                 return result;
             } catch (JSONException e) {
-                e.printStackTrace();
                 logger.info("LOGGER: AmbeeRepository getByCoordsAndDay lat={} lng={} from={}. Error: {}", lat, lng, from, e);
                 return null;
             } 

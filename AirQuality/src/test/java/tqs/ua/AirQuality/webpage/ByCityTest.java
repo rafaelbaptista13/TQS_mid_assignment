@@ -40,7 +40,7 @@ class ByCityTest {
     driver.quit();
   }
   @Test
-  public void bycity() {
+  void bycity() {
     driver.get("http://localhost:4200/");
     driver.manage().window().setSize(new Dimension(1920, 1031));
     driver.findElement(By.linkText("Search Air Quality by City")).click();

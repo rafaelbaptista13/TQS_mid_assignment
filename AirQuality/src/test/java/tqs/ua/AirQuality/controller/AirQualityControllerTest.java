@@ -28,7 +28,7 @@ class AirQualityControllerTest {
     private AirQualityService service;
 
     @Test
-    public void whenGetAirQualityByCity_thenReturnResult() throws Exception {
+    void whenGetAirQualityByCity_thenReturnResult() throws Exception {
         AirQuality response = getResponse();
 
         given(service.getLatestByCity("Aveiro")).willReturn(response);
@@ -51,7 +51,7 @@ class AirQualityControllerTest {
     }
 
     @Test
-    public void whenGetAirQualityByCoordsAndDay_thenReturnResult() throws Exception {
+    void whenGetAirQualityByCoordsAndDay_thenReturnResult() throws Exception {
         AirQuality response = getResponse();
 
         given(service.getByCoordsAndDay("12", "73", "2021-05-01")).willReturn(response);

@@ -39,7 +39,7 @@ public class AirQualityService {
         
         cache.saveRequest(city, result);
         return result;
-    };
+    }
 
     public AirQuality getByCoordsAndDay(String lat, String lng, String from) throws IOException, InterruptedException {
         logger.info("LOGGER: AirQualityService getByCoordsAndDay lat={} lng={} from={}", lat, lng, from);
@@ -56,11 +56,11 @@ public class AirQualityService {
         }
         cache.saveRequest(lat, lng, from, result);
         return result;
-    };
+    }
 
     public Cache getCacheStatistics() {
         logger.info("LOGGER: AirQualityService getCacheStatistics");
         return cache;
-    };
+    }
 
 }

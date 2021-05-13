@@ -40,7 +40,7 @@ class ByDayTest {
     driver.quit();
   }
   @Test
-  public void byday() {
+  void byday() {
     driver.get("http://localhost:4200/");
     driver.manage().window().setSize(new Dimension(1920, 1031));
     driver.findElement(By.linkText("Search Air Quality on a specific day")).click();
@@ -68,7 +68,7 @@ class ByDayTest {
   }
 
   @Test
-  public void byDayInvalidCoords() {
+  void byDayInvalidCoords() {
     driver.get("http://localhost:4200/");
     driver.manage().window().setSize(new Dimension(1920, 1031));
     driver.findElement(By.linkText("Search Air Quality on a specific day")).click();

@@ -36,17 +36,18 @@ public class BreezometerRepository {
                 JSONObject pollutants = data.getJSONObject("pollutants");
                 
                 AirQuality result = new AirQuality();
-                result.setNO2(Double.parseDouble(pollutants.getJSONObject("no2").getJSONObject("concentration").getString("value")));
-                result.setPM10(Double.parseDouble(pollutants.getJSONObject("pm10").getJSONObject("concentration").getString("value")));
-                result.setPM25(Double.parseDouble(pollutants.getJSONObject("pm25").getJSONObject("concentration").getString("value")));
-                result.setCO(Double.parseDouble(pollutants.getJSONObject("co").getJSONObject("concentration").getString("value")) / 1000);
-                result.setSO2(Double.parseDouble(pollutants.getJSONObject("so2").getJSONObject("concentration").getString("value")));
-                result.setOZONE(Double.parseDouble(pollutants.getJSONObject("o3").getJSONObject("concentration").getString("value")));
+                String concentration = "concentration";
+                String value = "value";
+                result.setNO2(Double.parseDouble(pollutants.getJSONObject("no2").getJSONObject(concentration).getString(value)));
+                result.setPM10(Double.parseDouble(pollutants.getJSONObject("pm10").getJSONObject(concentration).getString(value)));
+                result.setPM25(Double.parseDouble(pollutants.getJSONObject("pm25").getJSONObject(concentration).getString(value)));
+                result.setCO(Double.parseDouble(pollutants.getJSONObject("co").getJSONObject(concentration).getString(value)) / 1000);
+                result.setSO2(Double.parseDouble(pollutants.getJSONObject("so2").getJSONObject(concentration).getString(value)));
+                result.setOZONE(Double.parseDouble(pollutants.getJSONObject("o3").getJSONObject(concentration).getString(value)));
                 result.setAQI(Integer.parseInt(indexes_baqi.getString("aqi")));
                 
                 return result;
             } catch (JSONException e) {
-                e.printStackTrace();
                 logger.info("LOGGER: BreezometerRepository getByCoordsAndDay lat={} lng={} from={}. Error: {}", lat, lng, from, e);
                 return null;
             } 
