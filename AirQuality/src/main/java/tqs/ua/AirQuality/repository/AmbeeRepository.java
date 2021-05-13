@@ -16,7 +16,7 @@ import tqs.ua.AirQuality.model.AirQuality;
 @Repository
 public class AmbeeRepository {
     private static final String BASE_URL = "https://api.ambeedata.com/";
-    private static final String API_TOKEN = "P95szepBYB1GshVNamWn29MTHdivsXhj6eqjMr18";
+    private static final String API_TOKEN = "uZC2CO99ep3zeyRm6wwJv6aybJqMqa687RZohAZA";
     
     private static final Logger logger = LoggerFactory.getLogger(AmbeeRepository.class);
 
